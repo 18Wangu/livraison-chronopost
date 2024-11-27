@@ -2,9 +2,13 @@
 
 import { NextResponse } from 'next/server';
 
-{/* par la suite stocker ses valeurs dans un fichier caché */}
-const ACCOUNT_NUMBER = '19869502'; // Votre numéro de compte
-const PASSWORD = '255562'; // Votre mot de passe
+const ACCOUNT_NUMBER = process.env.ACCOUNT_NUMBER;
+const PASSWORD = process.env.PASSWORD;
+
+if (!ACCOUNT_NUMBER || !PASSWORD) {
+  throw new Error('Les variables ACCOUNT_NUMBER ou PASSWORD ne sont pas définies.');
+}
+
 
 export async function POST(request: Request) {
   const { recipient, parcelDetails } = await request.json();
