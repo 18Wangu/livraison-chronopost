@@ -14,7 +14,9 @@ const FormulaireLivraison = () => {
     email: '',
     country: 'FR',
   });
-  const [parcelDetails, setParcelDetails] = useState({ weight: 1, service: '961', productCode: '2E' });
+  {/* rendre le poid et la taille interactif, en fonction de la formule choisi ca change */}
+  {/* le code produit a ete envoye par mail */}
+  const [parcelDetails, setParcelDetails] = useState({ service: '0', productCode: '6A', as: 'A02', weight: 3 });
   const [label, setLabel] = useState('');
 
   const handleSubmit = async () => {
@@ -22,7 +24,7 @@ const FormulaireLivraison = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-      },
+      },   
       body: JSON.stringify({ recipient, parcelDetails }),
     });
 
@@ -97,6 +99,7 @@ const FormulaireLivraison = () => {
         <button onClick={handleSubmit}>Envoyer</button>
       </form>
 
+      {/* Pour visioner la requete post envoyé */}
       {label && (
         <div>
           <h2>Étiquette générée</h2>
